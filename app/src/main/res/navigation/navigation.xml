@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/actorListFragment">
+
+    <fragment
+        android:id="@+id/actorListFragment"
+        android:name="com.breakingbad.ActorsListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/actors_list_fragment" >
+
+        <action
+            android:id="@+id/action_actorListFragment_to_actorDetailFragment2"
+            app:destination="@id/actorDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/actorDetailFragment"
+        android:name="com.breakingbad.ActorDetailedFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/actor_detailed_fragment">
+    </fragment>
+</navigation>
