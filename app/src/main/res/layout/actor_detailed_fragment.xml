@@ -4,47 +4,154 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="model"
+            type="com.breakingbad.ActorDetailedViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DetailFragment">
+        tools:context="com.breakingbad.MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_height="match_parent"
+            android:background="#99FFFFFF"
+            android:layout_margin="@dimen/marginTop">
 
             <ImageView
                 android:id="@+id/main_photo_image"
                 android:layout_width="0dp"
                 android:layout_height="266dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
+                app:imageUrl="@{model.selectedActor.img}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
-                android:id="@+id/property_type_text"
+                android:id="@+id/actor_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textColor="#de000000"
                 android:textSize="39sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/main_photo_image"
-                tools:text="To Rent" />
+                app:layout_constraintTop_toBottomOf="@id/main_photo_image"
+                tools:text="@{model.selectedActor.name}" />
 
-            <TextView
-                android:id="@+id/price_value_text"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="#de000000"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/property_type_text"
-                tools:text="$100,000" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="32dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/actor_name"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/occupation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:text="`Occupation"
+                    android:textSize="@dimen/textSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:text="`Status"
+                    android:textSize="@dimen/textSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/occupation" />
+
+                <TextView
+                    android:id="@+id/nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:text="`Nickname"
+                    android:textSize="@dimen/textSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/status" />
+
+                <TextView
+                    android:id="@+id/appearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:text="`Appearance"
+                    android:textSize="@dimen/textSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nickname" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="@dimen/marginTop"
+                app:layout_constraintTop_toBottomOf="@id/actor_name"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout">
+
+                <TextView
+                    android:id="@+id/actor_occupation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:textColor="#de000000"
+                    android:textSize="@dimen/textSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@{String.valueOf(model.selectedActor.occupation)}" />
+
+                <TextView
+                    android:id="@+id/actor_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:textColor="#de000000"
+                    android:textSize="@dimen/textSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/actor_occupation"
+                    tools:text="@{String.valueOf(model.selectedActor.status)}" />
+
+                <TextView
+                    android:id="@+id/actor_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:textColor="#de000000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/actor_status"
+                    tools:text="@{String.valueOf(model.selectedActor.nickname)}" />
+
+                <TextView
+                    android:id="@+id/actor_appearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:textColor="#de000000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/actor_nickname"
+                    tools:text="@{String.valueOf(model.selectedActor.appearance)}" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -6,26 +6,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.breakingbad.databinding.ActorDetailedFragmentBinding
 
 class ActorDetailedFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ActorDetailedFragment()
-    }
-
-    private lateinit var viewModel: ActorDetailedViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.actor_detailed_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ActorDetailedViewModel::class.java)
-        // TODO: Use the ViewModel
+        val application = requireNotNull(activity).application
+        val binding = ActorDetailedFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        val singleActor = ActorDetailedFragmentArgs.fromBundle(arguments!!).selectedActor
+        val viewModelFactory = DetailViewModelFactory(singleActor, application)
+        binding.model = ViewModelProvider(
+            this, viewModelFactory).get(ActorDetailedViewModel::class.java)
+        return binding.root
     }
 
 }

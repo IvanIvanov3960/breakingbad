@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <data>
+        <variable
+            name="actor"
+            type="com.breakingbad.network.SingleActor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#99FFFFFF"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/actor_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:maxWidth="42dp"
+            android:maxHeight="42dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic"
+            app:imageUrl="@{actor.img}"/>
+
+        <TextView
+            android:id="@+id/actorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{actor.name}"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/actor_image"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

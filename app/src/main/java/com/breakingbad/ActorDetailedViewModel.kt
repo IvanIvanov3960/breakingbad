@@ -1,7 +1,18 @@
 package com.breakingbad
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import com.breakingbad.network.SingleActor
 
-class ActorDetailedViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class ActorDetailedViewModel(singleActor: SingleActor, app: Application) : AndroidViewModel(app) {
+
+    private val _selectedActor = MutableLiveData<SingleActor>()
+
+    val selectedActor: LiveData<SingleActor>
+        get() = _selectedActor
+
+    init {
+        _selectedActor.value = singleActor
+    }
+
 }

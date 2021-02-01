@@ -12,7 +12,7 @@
         tools:layout="@layout/actors_list_fragment" >
 
         <action
-            android:id="@+id/action_actorListFragment_to_actorDetailFragment2"
+            android:id="@+id/action_actorListFragment_to_actorDetailFragment"
             app:destination="@id/actorDetailFragment" />
     </fragment>
 
@@ -21,5 +21,8 @@
         android:name="com.breakingbad.ActorDetailedFragment"
         android:label="fragment_detail"
         tools:layout="@layout/actor_detailed_fragment">
+        <argument
+            android:name="selectedActor"
+            app:argType="com.breakingbad.network.SingleActor" />
     </fragment>
 </navigation>
